@@ -1,0 +1,114 @@
+@model NTKServer.ViewModels.WalletWithdraw.WalletWithdrawReview
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:review"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+		<form asp-action="PostReview" id="form1">
+			<div class="form-group">
+				<label class="control-label">@lang["create_time"]</label>
+				<input asp-for="create_time" class="form-control" readonly />
+				<span asp-validation-for="create_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["order_no"]</label>
+				<input asp-for="order_no" class="form-control" readonly />
+				<span asp-validation-for="order_no" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["wallet_amount"]</label>
+				<input asp-for="wallet_amount" class="form-control" readonly />
+				<span asp-validation-for="wallet_amount" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["exchange"]</label>
+				<input asp-for="exchange" class="form-control" readonly />
+				<span asp-validation-for="exchange" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" readonly />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money"]</label>
+				<input asp-for="money" class="form-control" readonly />
+				<span asp-validation-for="money" class="text-danger"></span>
+			</div>
+				<input asp-for="member_bank_fk" class="form-control" readonly hidden />
+				<input asp-for="pk" class="form-control" readonly hidden />
+				
+			<div class="form-group">
+				<label class="control-label">@lang["bank_currency"]</label>
+				<input asp-for="bank_currency" class="form-control" readonly />
+				<span asp-validation-for="bank_currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="form-check-label">
+					<input class="form-check-input" asp-for="is_confirm" readonly /> @lang["is_confirm"]
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["bank"]</label>
+				<input asp-for="bank" class="form-control" readonly />
+				<span asp-validation-for="bank" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["branch"]</label>
+				<input asp-for="branch" class="form-control" readonly />
+				<span asp-validation-for="branch" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card"]</label>
+				<input asp-for="card" class="form-control" readonly />
+				<span asp-validation-for="card" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["bank_account"]</label>
+				<input asp-for="bank_account" class="form-control" readonly />
+				<span asp-validation-for="bank_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" readonly />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["nickname"]</label>
+				<input asp-for="nickname" class="form-control" readonly />
+				<span asp-validation-for="nickname" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="id_auth"  readonly /> @lang["id_auth"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["admin_user_fk"]</label>
+				<input asp-for="admin_user_fk" class="form-control" readonly />
+				<span asp-validation-for="admin_user_fk" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+				<input id="result" name="result" hidden />
+				<input type="button" value="@lang["public:approve"]" class="btn btn-primary" onclick="review(true);"   />
+				<input type="button" value="@lang["public:reject"]" class="btn btn-secondary" onclick="review(false);"   />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+<script>
+	function review(result) {
+		
+		$("#result").val(result);
+		$("#form1").submit();
+	}
+</script>

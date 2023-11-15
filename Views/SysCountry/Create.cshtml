@@ -1,0 +1,58 @@
+@model Models.Dto.SysCountryDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate" enctype="multipart/form-data">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["label"]</label>
+				<input asp-for="label" class="form-control" />
+				<span asp-validation-for="label" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="enable" /> @lang["enable"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<div class="form-group">
+					<label class="control-label">@lang["flag"]</label>
+					<input type="file" asp-for="flag_file" class="form-control" />
+					<span asp-validation-for="flag_file" class="text-danger"></span>
+				</div>				
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["code"]</label>
+				<input asp-for="code" class="form-control" />
+				<span asp-validation-for="code" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

@@ -1,0 +1,72 @@
+@model NTKServer.ViewModels.RecommendRegister.RecommendRegisterList;
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<a asp-action="Index">@lang["public:back_list"]</a>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">@lang["create_date"]</label>
+            <input asp-for="create_date" class="form-control" />
+            <span asp-validation-for="create_date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["admin_user_fk"]</label>
+            <input asp-for="admin_user_fk" class="form-control" />
+            <span asp-validation-for="admin_user_fk" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["account"]</label>
+            <input asp-for="account" class="form-control" />
+            <span asp-validation-for="account" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["nickname"]</label>
+            <input asp-for="nickname" class="form-control" />
+            <span asp-validation-for="nickname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["real_name"]</label>
+            <input asp-for="real_name" class="form-control" />
+            <span asp-validation-for="real_name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["id_auth"]</label>
+            <input asp-for="id_auth" class="form-control" />
+            <span asp-validation-for="id_auth" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["level_id"]</label>
+            <input asp-for="level_id" class="form-control" />
+            <span asp-validation-for="level_id" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["invitation_code"]</label>
+            <input asp-for="invitation_code" class="form-control" />
+            <span asp-validation-for="invitation_code" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["first_borrow_date"]</label>
+            <input asp-for="first_borrow_date" class="form-control" />
+            <span asp-validation-for="first_borrow_date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["Inviteaccount"]</label>
+            <input asp-for="Inviteaccount" class="form-control" />
+            <span asp-validation-for="Inviteaccount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">@lang["Invitenickname"]</label>
+            <input asp-for="Invitenickname" class="form-control" />
+            <span asp-validation-for="Invitenickname" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

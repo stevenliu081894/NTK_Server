@@ -1,0 +1,98 @@
+@model Models.Dto.AdminUserDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["role"]</label>
+				<select asp-for="role" asp-items="@(new SelectList(ViewBag.roleDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+				</select>
+				<span asp-validation-for="role" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["nickname"]</label>
+				<input asp-for="nickname" class="form-control" />
+				<span asp-validation-for="nickname" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["password"]</label>
+				<input asp-for="password" class="form-control" />
+				<span asp-validation-for="password" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="status" /> @lang["status"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="is_admin" /> @lang["is_admin"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["mobile"]</label>
+				<input asp-for="mobile" class="form-control" />
+				<span asp-validation-for="mobile" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["email"]</label>
+				<input asp-for="email" class="form-control" />
+				<span asp-validation-for="email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["avatar"]</label>
+				<input asp-for="avatar" class="form-control" />
+				<span asp-validation-for="avatar" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sort"]</label>
+				<input asp-for="sort" class="form-control" />
+				<span asp-validation-for="sort" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_time"]</label>
+				<input asp-for="last_login_time" class="form-control" />
+				<span asp-validation-for="last_login_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_ip"]</label>
+				<input asp-for="last_login_ip" class="form-control" />
+				<span asp-validation-for="last_login_ip" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="change_password" /> @lang["change_password"]
+			</label>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

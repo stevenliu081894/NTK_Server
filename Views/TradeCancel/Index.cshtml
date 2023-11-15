@@ -1,0 +1,70 @@
+@using NTKServer.ViewModels.TradeCancel;
+@model TradeCancelVm
+@{
+    var Filter = (TradeCancelFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["trade_order_sn"]</label>
+				<input asp-for="@Filter.trade_order_sn" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["stock_code"]</label>
+				<input asp-for="@Filter.stock_code" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["stock_name"]</label>
+				<input asp-for="@Filter.stock_name" class="form-control" />
+			</div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+				<th>@lang["cancel_datetime"]</th>
+				<th>@lang["sub_account"]</th>
+				<th>@lang["sn"]</th>
+				<th>@lang["trade_order_sn"]</th>
+				<th>@lang["stock_code"]</th>
+				<th>@lang["stock_name"]</th>
+				<th>@lang["cancel_volume"]</th>
+				<th>@lang["cancel_type"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.cancel_datetime)</td>
+				<td>@Html.DisplayFor(modelItem => item.sub_account)</td>
+				<td>@Html.DisplayFor(modelItem => item.sn)</td>
+				<td>@Html.DisplayFor(modelItem => item.trade_order_sn)</td>
+				<td>@Html.DisplayFor(modelItem => item.stock_code)</td>
+				<td>@Html.DisplayFor(modelItem => item.stock_name)</td>
+				<td>@Html.DisplayFor(modelItem => item.cancel_volume)</td>
+				<td>@Html.DisplayFor(modelItem => item.cancel_type)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

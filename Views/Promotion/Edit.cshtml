@@ -1,0 +1,122 @@
+@model Models.Dto.CmsPromotionDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<style>
+    .ck-editor {
+        min-width: 1000px;
+    }
+	.ck-editor__editable {
+        min-height: 300px;
+	}
+</style>
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit" enctype="multipart/form-data" >
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["view"]</label>
+				<input asp-for="view" class="form-control" />
+				<span asp-validation-for="view" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sort"]</label>
+				<input asp-for="sort" class="form-control" />
+				<span asp-validation-for="sort" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="on_active" /> @lang["on_active"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="trash" /> @lang["trash"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["starttime"]</label>
+				<input asp-for="starttime" class="form-control" />
+				<span asp-validation-for="starttime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["endtime"]</label>
+				<input asp-for="endtime" class="form-control" />
+				<span asp-validation-for="endtime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["topic_content"]</label>
+				<textarea asp-for="topic_content" name="topic_content" id="topic_content" class="form-control" ></textarea>
+				<span asp-validation-for="topic_content" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["img_url"]</label>
+				<input asp-for="img_url" class="form-control" readonly />
+				<span asp-validation-for="img_url" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<div class="form-group">
+					<label class="control-label">@lang["img_file"]</label>
+					<input type="file" asp-for="img_file" class="form-control" />
+					<span asp-validation-for="img_file" class="text-danger"></span>
+				</div>				
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["summary"]</label>
+				<input asp-for="summary" class="form-control" required="required"  />
+				<span asp-validation-for="summary" class="text-danger"></span>
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" asp-for="outsite" /> @lang["outsite"]
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["url"]</label>
+				<input asp-for="url" class="form-control" />
+				<span asp-validation-for="url" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+@section Scripts{
+    <script src="~/assets/ckeditor5/ckeditor.js" > </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#topic_content' ),
+			{
+				ckfinder: { uploadUrl: '/Promotion/UploadImage' }
+			}
+			 )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+}

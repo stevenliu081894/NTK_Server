@@ -1,0 +1,94 @@
+@using NTKServer.ViewModels.StatTradeAccount;
+@model StatTradeAccountVm
+@{
+    var Filter = (StatTradeAccountFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["start_time"]</label>
+				<input asp-for="@Filter.start_year" class="form-control" />
+			</div>
+			<div class="col-auto">
+                <label class="control-label">@lang["start_month"]</label>
+                <select asp-for="@Filter.start_month" asp-items="@(new SelectList(ViewBag.months, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+					<option value="">@lang["start_month"]</option>
+				</select>
+            </div>
+			<div class="col-auto">
+				<label class="control-label">@lang["end_year"]</label>
+				<input asp-for="@Filter.end_year" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["end_month"]</label>
+                <select asp-for="@Filter.end_month" asp-items="@(new SelectList(ViewBag.months, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+					<option value="">@lang["end_month"]</option>
+				</select>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+				<th>@lang["market"]</th>
+				<th>@lang["loan_type"]</th>
+				<th>@lang["margin"]</th>
+				<th>@lang["loan_money"]</th>
+				<th>@lang["dcount"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+				<td>@Html.DisplayFor(modelItem => item.market)</td>
+				<td>@Html.DisplayFor(modelItem => item.loan_type)</td>
+				<td>@Html.DisplayFor(modelItem => item.margin)</td>
+				<td>@Html.DisplayFor(modelItem => item.loan_money)</td>
+				<td>@Html.DisplayFor(modelItem => item.dcount)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 分頁處理 -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+				LiElementClasses = new string[] { "page-item" },
+				PageClasses = new string[] { "page-link" },
+				LinkToFirstPageFormat ="<<",
+				LinkToPreviousPageFormat = "<",
+				LinkToNextPageFormat = ">",
+				LinkToLastPageFormat = ">>",
+
+				MaximumPageNumbersToDisplay = 8
+            })
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">@lang["public:total_count"]: @Model.list.TotalItemCount </div>
+</div>

@@ -1,0 +1,47 @@
+@model Models.Dto.CmsPopinfoDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<select asp-for="lang" asp-items="@(new SelectList(ViewBag.langDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+                </select>
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["info"]</label>
+				<input asp-for="info" class="form-control" />
+				<span asp-validation-for="info" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["size"]</label>
+				<select asp-for="size" asp-items="@(new SelectList(ViewBag.sizeDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+				</select>
+				<span asp-validation-for="size" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="enable" /> @lang["enable"]
+			</label>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

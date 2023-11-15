@@ -1,0 +1,77 @@
+@model Models.Dto.MessageTemplateDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["temp_id"]</label>
+				<input asp-for="temp_id" class="form-control" />
+				<span asp-validation-for="temp_id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="status" /> @lang["status"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["name"]</label>
+				<input asp-for="name" class="form-control" />
+				<span asp-validation-for="name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["type"]</label>
+				<input asp-for="type" class="form-control" />
+				<span asp-validation-for="type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["receiver"]</label>
+				<input asp-for="receiver" class="form-control" />
+				<span asp-validation-for="receiver" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["param"]</label>
+				<input asp-for="param" class="form-control" />
+				<span asp-validation-for="param" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["template"]</label>
+				<input asp-for="template" class="form-control" />
+				<span asp-validation-for="template" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["remark"]</label>
+				<input asp-for="remark" class="form-control" />
+				<span asp-validation-for="remark" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

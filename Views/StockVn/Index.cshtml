@@ -1,0 +1,103 @@
+@using NTKServer.ViewModels.StockVn;
+@model StockVnVm
+@{
+    var Filter = (StockVnFilter)@Model.filter;
+    var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+            <div class="col-auto">
+                <label class="control-label">@lang["stock_code"]</label>
+                <input asp-for="@Filter.stock_code" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["stock_name"]</label>
+                <input asp-for="@Filter.stock_name" class="form-control" />
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+                <th>@lang["stock_code"]</th>
+                <th>@lang["stock_name"]</th>
+                <th>@lang["enable"]</th>
+                <th>@lang["disable_alwayse"]</th>
+                <th>@lang["program_enable"]</th>
+                <th>@lang["main_switch"]</th>
+                <th>@lang["program_msg"]</th>
+                <th>@lang["opentrade"]</th>
+                <th>@lang["update_datetime"]</th>
+                <th>@lang["yclose"]</th>
+                <th>@lang["final_price"]</th>
+                <th>@lang["volume"]</th>
+                <th>@lang["limitbuy"]</th>
+                <th>@lang["limitsell"]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink((string)@lang["public:setup"], "Edit", new { stock_code = item.stock_code }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.stock_code)</td>
+                    <td>@Html.DisplayFor(modelItem => item.stock_name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.enable)</td>
+                    <td>@Html.DisplayFor(modelItem => item.disable_alwayse)</td>
+                    <td>@Html.DisplayFor(modelItem => item.program_enable)</td>
+                    <td>@Html.DisplayFor(modelItem => item.main_switch)</td>
+                    <td>@Html.DisplayFor(modelItem => item.program_msg)</td>
+                    <td>@Html.DisplayFor(modelItem => item.opentrade)</td>
+                    <td>@Html.DisplayFor(modelItem => item.update_datetime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.yclose)</td>
+                    <td>@Html.DisplayFor(modelItem => item.final_price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.volume)</td>
+                    <td>@Html.DisplayFor(modelItem => item.limitbuy)</td>
+                    <td>@Html.DisplayFor(modelItem => item.limitsell)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 分頁處理 -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            LinkToFirstPageFormat ="<<",
+            LinkToPreviousPageFormat = "<",
+            LinkToNextPageFormat = ">",
+            LinkToLastPageFormat = ">>",
+
+            MaximumPageNumbersToDisplay = 8
+            })
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">@lang["public:total_count"]: @Model.list.TotalItemCount </div>
+</div>

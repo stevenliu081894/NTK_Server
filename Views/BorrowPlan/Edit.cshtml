@@ -1,0 +1,124 @@
+@model Models.Dto.BorrowPlanDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<input asp-for="market" class="form-control" readonly/>
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="enable" /> @lang["enable"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["borrow_type"]</label>
+				<input asp-for="borrow_type" class="form-control" readonly/>
+				<span asp-validation-for="borrow_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["name"]</label>
+				<input asp-for="name" class="form-control" />
+				<span asp-validation-for="name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["rate"]</label>
+				<textarea asp-for="rate" class="form-control" rows="10"></textarea>
+				<span asp-validation-for="rate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["warning_line"]</label>
+				<input asp-for="warning_line" class="form-control" />
+				<span asp-validation-for="warning_line" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["break_line"]</label>
+				<input asp-for="break_line" class="form-control" />
+				<span asp-validation-for="break_line" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["max_proporting"]</label>
+				<input asp-for="max_proporting" class="form-control" />
+				<span asp-validation-for="max_proporting" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="renewal" /> @lang["renewal"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["use_time"]</label>
+				<textarea asp-for="use_time" class="form-control" rows="10"></textarea>
+				@*<input asp-for="use_time" class="form-control" />*@
+				<span asp-validation-for="use_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money_range_min"]</label>
+				<input asp-for="money_range_min" class="form-control" />
+				<span asp-validation-for="money_range_min" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money_range_max"]</label>
+				<input asp-for="money_range_max" class="form-control" />
+				<span asp-validation-for="money_range_max" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money_range_increase"]</label>
+				<input asp-for="money_range_increase" class="form-control" />
+				<span asp-validation-for="money_range_increase" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["fastbtn"]</label>
+				<input asp-for="fastbtn" class="form-control" />
+				<span asp-validation-for="fastbtn" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["slogan"]</label>
+				<input asp-for="slogan" class="form-control" />
+				<span asp-validation-for="slogan" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["note"]</label>
+				<input asp-for="note" class="form-control" />
+				<span asp-validation-for="note" class="text-danger"></span>
+			</div>
+			@if (Model.borrow_type == "free")
+			{
+				<div class="form-group">
+					<label class="control-label">@lang["unique_set_free"]</label>
+					<input asp-for="unique_set" class="form-control" />
+					<span asp-validation-for="unique_set" class="text-danger"></span>
+				</div>
+			}
+			@if (Model.borrow_type == "trial")
+			{
+				<div class="form-group">
+					<label class="control-label">@lang["unique_set_trial"]</label>
+					<input asp-for="unique_set" class="form-control" />
+					<span asp-validation-for="unique_set" class="text-danger"></span>
+				</div>
+			}
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

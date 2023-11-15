@@ -1,0 +1,112 @@
+@using NTKServer.ViewModels.StockHoliday;
+@model StockHolidayVm
+@{
+    var Filter = (StockHolidayFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["market"]</label>
+                <select asp-for="@Filter.market" asp-items="@(new SelectList(ViewBag.market, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+                    <option value="">@lang["market"]</option>
+                </select>
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["name"]</label>
+				<input asp-for="@Filter.name" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["year"]</label>
+				<input asp-for="@Filter.year" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["date"]</label>
+				<input asp-for="@Filter.date" type="date" class="form-control" />
+			</div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+@Html.ActionLink((string)@lang["public:append"], "Create", new {}, new { @class = "btn btn-primary"})
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>			
+				<th>@lang["market"]</th>
+				<th>@lang["name"]</th>
+				<th>@lang["year"]</th>
+				<th>@lang["date"]</th>
+				<th>@lang["is_allday"]</th>
+				<th>@lang["open"]</th>
+				<th>@lang["close"]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							@Html.ActionLink((string)@lang["public:edit"], "Edit", new { pk = item.pk }, new { @class = "dropdown-item" })
+							@{
+                            string del = "return confirm('" + (string)@lang["public:confirm_delete"] + "')";
+                        }
+							@Html.ActionLink((string)@lang["public:delete"], "Delete", new { pk = item.pk }, new { @class = "dropdown-item", onclick = @del })
+
+                        </div>
+                    </div>
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.market)</td>
+				<td>@Html.DisplayFor(modelItem => item.name)</td>
+				<td>@Html.DisplayFor(modelItem => item.year)</td>
+				<td>@Html.DisplayFor(modelItem => item.date)</td>
+				<td>@Html.DisplayFor(modelItem => item.is_allday)</td>
+				<td>@Html.DisplayFor(modelItem => item.open)</td>
+				<td>@Html.DisplayFor(modelItem => item.close)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 分頁處理 -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+				LiElementClasses = new string[] { "page-item" },
+				PageClasses = new string[] { "page-link" },
+				LinkToFirstPageFormat ="<<",
+				LinkToPreviousPageFormat = "<",
+				LinkToNextPageFormat = ">",
+				LinkToLastPageFormat = ">>",
+
+				MaximumPageNumbersToDisplay = 8
+            })
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">@lang["public:total_count"]: @Model.list.TotalItemCount </div>
+</div>

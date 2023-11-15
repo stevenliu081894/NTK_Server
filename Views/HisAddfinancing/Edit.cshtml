@@ -1,0 +1,81 @@
+@model NTKServer.ViewModels.HisAddfinancing.HisAddfinancingEditVm
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:detail"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+			<div class="form-group">
+				<label class="control-label">@lang["status"]</label>
+				<input asp-for="status" class="form-control" />
+				<span asp-validation-for="status" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["member_name"]</label>
+				<input asp-for="member_name" class="form-control" />
+				<span asp-validation-for="member_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="sub_account" class="form-control" />
+				<span asp-validation-for="sub_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<input asp-for="market" class="form-control" />
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["loan_type"]</label>
+				<input asp-for="loan_type" class="form-control" />
+				<span asp-validation-for="loan_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money"]</label>
+				<input asp-for="money" class="form-control" />
+				<span asp-validation-for="money" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["borrow_interest"]</label>
+				<input asp-for="borrow_interest" class="form-control" />
+				<span asp-validation-for="borrow_interest" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["exchange"]</label>
+				<input asp-for="exchange" class="form-control" />
+				<span asp-validation-for="exchange" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["freeze"]</label>
+				<input asp-for="freeze" class="form-control" />
+				<span asp-validation-for="freeze" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["add_time"]</label>
+				<input asp-for="add_time" class="form-control" />
+				<span asp-validation-for="add_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["verify_time"]</label>
+				<input asp-for="verify_time" class="form-control" />
+				<span asp-validation-for="verify_time" class="text-danger"></span>
+			</div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

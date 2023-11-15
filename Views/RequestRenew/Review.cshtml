@@ -1,0 +1,122 @@
+@model NTKServer.ViewModels.RequestRenew.RequestRenewReview
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:review"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostReview" id="form1">
+			<div class="form-group">
+				<input asp-for="pk" name="pk" hidden />
+				<label class="control-label">@lang["add_time"]</label>
+				<input asp-for="add_time" class="form-control" readonly />
+				<span asp-validation-for="add_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="sub_account" class="form-control" readonly />
+				<span asp-validation-for="sub_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["loan_type"]</label>
+				<input asp-for="loan_type" class="form-control" readonly />
+				<span asp-validation-for="loan_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["member_fk"]</label>
+				<input asp-for="member_fk" class="form-control" readonly />
+				<span asp-validation-for="member_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" readonly />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["member_name"]</label>
+				<input asp-for="member_name" class="form-control" readonly />
+				<span asp-validation-for="member_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" class="form-control" readonly />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["borrow_duration"]</label>
+				<input asp-for="borrow_duration" class="form-control" readonly />
+				<span asp-validation-for="borrow_duration" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["end_time"]</label>
+				<input asp-for="end_time" class="form-control" readonly />
+				<span asp-validation-for="end_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["new_end_time"]</label>
+				<input asp-for="new_end_time" class="form-control" readonly />
+				<span asp-validation-for="new_end_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["borrow_fee"]</label>
+				<input asp-for="borrow_fee" class="form-control" readonly />
+				<span asp-validation-for="borrow_fee" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<input asp-for="market" class="form-control" readonly />
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["margin"]</label>
+				<input asp-for="margin" class="form-control" readonly />
+				<span asp-validation-for="margin" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["balance"]</label>
+				<input asp-for="balance" class="form-control" readonly />
+				<span asp-validation-for="balance" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["warningline"]</label>
+				<input asp-for="warningline" class="form-control" readonly />
+				<span asp-validation-for="warningline" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["breakline"]</label>
+				<input asp-for="breakline" class="form-control" readonly />
+				<span asp-validation-for="breakline" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["status"]</label>
+				<input asp-for="status" class="form-control" readonly />
+				<span asp-validation-for="status" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["verify_time"]</label>
+				<input asp-for="verify_time" class="form-control" readonly />
+				<span asp-validation-for="verify_time" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+				<input id="result" name="result" hidden />
+				<input type="button" value="@lang["public:approve"]" class="btn btn-primary" onclick="review(true);"   />
+				<input type="button" value="@lang["public:reject"]" class="btn btn-secondary" onclick="review(false);"   />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+<script>
+	function review(result) {
+		
+		$("#result").val(result);
+		$("#form1").submit();
+	}
+</script>

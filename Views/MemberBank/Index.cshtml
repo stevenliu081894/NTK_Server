@@ -1,0 +1,49 @@
+@using NTKServer.ViewModels.MemberBank;
+@model List<MemberBankList>
+@{
+    var lang = ViewBag.Lang;
+}
+
+<a href="~/Wallet/Index" class="btn btn-primary">@lang["public:back_list"]</a>
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+                <th>@lang["card_type"]</th>
+                <th>@lang["currency"]</th>
+                <th>@lang["bank"]</th>
+                <th>@lang["branch"]</th>
+                <th>@lang["card"]</th>
+                <th>@lang["bank_account"]</th>
+                <th>@lang["is_confirm"]</th>
+                <th>@lang["account"]</th>
+                <th>@lang["nickname"]</th>
+                <th>@lang["real_name"]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink((string)@lang["public:review"], "Review", new { card_pk = item.card_pk }, new { @class = "btn btn-secondary" })
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.card_type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.currency)</td>
+                    <td>@Html.DisplayFor(modelItem => item.bank)</td>
+                    <td>@Html.DisplayFor(modelItem => item.branch)</td>
+                    <td>@Html.DisplayFor(modelItem => item.card)</td>
+                    <td>@Html.DisplayFor(modelItem => item.bank_account)</td>
+                    <td>@Html.DisplayFor(modelItem => item.is_confirm)</td>
+                    <td>@Html.DisplayFor(modelItem => item.account)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nickname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.real_name)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,75 @@
+@using NTKServer.ViewModels.UserTradePosition;
+@model UserTradePositionVm
+@{
+    var Filter = (UserTradePositionFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["stock_code"]</label>
+				<input asp-for="@Filter.stock_code" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["stock_name"]</label>
+				<input asp-for="@Filter.stock_name" class="form-control" />
+			</div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<a href="~/TradingAccount/Index" class="btn btn-primary">@lang["public:back_list"]</a>
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+				<th>@lang["sub_account"]</th>
+				<th>@lang["stock_code"]</th>
+				<th>@lang["stock_name"]</th>
+				<th>@lang["stock_type"]</th>
+				<th>@lang["profit"]</th>
+				<th>@lang["holding_volume"]</th>
+				<th>@lang["lastprice"]</th>
+				<th>@lang["cost_price"]</th>
+				<th>@lang["new_pos"]</th>
+				<th>@lang["close_pos"]</th>
+				<th>@lang["stop_lose_pos"]</th>
+				<th>@lang["total"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.sub_account)</td>
+				<td>@Html.DisplayFor(modelItem => item.stock_code)</td>
+				<td>@Html.DisplayFor(modelItem => item.stock_name)</td>
+				<td>@Html.DisplayFor(modelItem => item.stock_type)</td>
+				<td>@Html.DisplayFor(modelItem => item.profit)</td>
+				<td>@Html.DisplayFor(modelItem => item.holding_volume)</td>
+				<td>@Html.DisplayFor(modelItem => item.lastprice)</td>
+				<td>@Html.DisplayFor(modelItem => item.cost_price)</td>
+				<td>@Html.DisplayFor(modelItem => item.new_pos)</td>
+				<td>@Html.DisplayFor(modelItem => item.close_pos)</td>
+				<td>@Html.DisplayFor(modelItem => item.stop_lose_pos)</td>
+				<td>@Html.DisplayFor(modelItem => item.total)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

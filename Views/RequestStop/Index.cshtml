@@ -1,0 +1,81 @@
+@using NTKServer.ViewModels.RequestStop;
+@model RequestStopVm
+@{
+    var Filter = (RequestStopFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="@Filter.sub_account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["member_fk"]</label>
+				<input asp-for="@Filter.member_fk" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="@Filter.account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["member_name"]</label>
+				<input asp-for="@Filter.member_name" class="form-control" />
+			</div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+				<th>@lang["add_time"]</th>
+				<th>@lang["sub_account"]</th>
+				<th>@lang["loan_type"]</th>
+				<th>@lang["init_money"]</th>
+				<th>@lang["balance"]</th>
+				<th>@lang["end_time"]</th>
+				<th>@lang["member_fk"]</th>
+				<th>@lang["account"]</th>
+				<th>@lang["member_name"]</th>
+				<th>@lang["warningline"]</th>
+				<th>@lang["breakline"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+							@Html.ActionLink((string)@lang["public:review"], "Review", new { pk = item.pk }, new { @class = "btn btn-secondary" })
+
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.add_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.sub_account)</td>
+				<td>@Html.DisplayFor(modelItem => item.loan_type)</td>
+				<td>@Html.DisplayFor(modelItem => item.init_money)</td>
+				<td>@Html.DisplayFor(modelItem => item.balance)</td>
+				<td>@Html.DisplayFor(modelItem => item.end_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.member_fk)</td>
+				<td>@Html.DisplayFor(modelItem => item.account)</td>
+				<td>@Html.DisplayFor(modelItem => item.member_name)</td>
+				<td>@Html.DisplayFor(modelItem => item.warningline)</td>
+				<td>@Html.DisplayFor(modelItem => item.breakline)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

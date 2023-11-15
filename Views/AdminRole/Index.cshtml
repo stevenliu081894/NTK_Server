@@ -1,0 +1,46 @@
+﻿@model IEnumerable<NTKServer.ViewModels.AdminRole.AdminRoleList>
+
+<p>
+    @Html.ActionLink("新增", "Create", new {}, new { @class = "btn btn-primary"})
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                編號
+            </th>
+            <th>
+                角色名稱
+            </th>
+            <th>
+                工作描述
+            </th>
+            <th>
+                啟用
+            </th>
+            <th>管理</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                    @Html.ActionLink("編輯", "Edit",  new { id=item.pk }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("刪除", "Delete", new { id=item.pk }, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

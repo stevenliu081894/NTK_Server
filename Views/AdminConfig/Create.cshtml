@@ -1,0 +1,66 @@
+@model Models.Dto.AdminConfigDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+			<div class="form-group">
+				<label class="control-label">@lang["name"]</label>
+				<input asp-for="name" readonly class="form-control" />
+				<span asp-validation-for="name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["group"]</label>
+				<input asp-for="group" class="form-control" />
+				<span asp-validation-for="group" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["value"]</label>
+				<input asp-for="value" class="form-control" />
+				<span asp-validation-for="value" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["tips"]</label>
+				<input asp-for="tips" class="form-control" />
+				<span asp-validation-for="tips" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["format"]</label>
+				<input asp-for="format" class="form-control" />
+				<span asp-validation-for="format" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["sort"]</label>
+				<input asp-for="sort" class="form-control" />
+				<span asp-validation-for="sort" class="text-danger"></span>
+			</div>
+
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" asp-for="status" /> @lang["status"]
+				</label>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

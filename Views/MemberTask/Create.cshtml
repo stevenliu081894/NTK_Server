@@ -1,0 +1,56 @@
+@model Models.Dto.MemberTaskDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sub_type"]</label>
+				<input asp-for="sub_type" class="form-control" />
+				<span asp-validation-for="sub_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["coin"]</label>
+				<input asp-for="coin" class="form-control" />
+				<span asp-validation-for="coin" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<select asp-for="lang" asp-items="@(new SelectList(ViewBag.langDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+                </select>
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["content"]</label>
+				<input asp-for="content" class="form-control" />
+				<span asp-validation-for="content" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

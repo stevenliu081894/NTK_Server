@@ -1,0 +1,147 @@
+﻿@using NTKServer.ViewModels.Home;
+@model HomeVm
+@{
+    ViewData["Title"] = "儀表盤";
+}
+
+<link href="~/css/home.css" rel="stylesheet" />
+
+<div class="wrapper">
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 newbox">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="widget-user-username">申请请求</h3>
+                                <h5 class="widget-user-desc">Application Request</h5>
+                            </div>
+                            <div class="card-body p-0 widget-user-header">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(274)">入金申请人数 <span class="float-right badge bg-primary">@Model.RechargeApplyCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(294)">提现申请人数 <span class="float-right badge bg-primary">@Model.WithdrawApplyCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(322)">新合约申请人数 <span class="float-right badge bg-primary">@Model.BorrowCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(329)">追加保证金帐号数 <span class="float-right badge bg-primary">@Model.BorrowAddMoneyCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(355)">交易号续期申请数 <span class="float-right badge bg-primary">@Model.BorrowRenewCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(325)">扩大融资申请 <span class="float-right badge bg-primary">@Model.BorrowAddFinanceCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(366)">提前终止交易申请 <span class="float-right badge bg-primary">@Model.BorrowStopCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(366)">申请提盈帐号数 <span class="float-right badge bg-primary">@Model.TradeBenefitWithdrawCount</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 newbox">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="widget-user-username">合约帐号</h3>
+                                <h5 class="widget-user-desc">Contract Account</h5>
+                            </div>
+                            <div class="card-footer p-0 widget-user-header">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(390)">交易中帐号数 <span class="float-right badge bg-primary">@Model.TradeAccountCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(390)">预警帐号数 <span class="float-right badge bg-primary">@Model.AlertTradeAccountCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(390)">今日到期交易号数 <span class="float-right badge bg-primary">@Model.TradeAccountEndTodayCount</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(390)">交易中免费融资帐号数 <span class="float-right badge bg-primary">@Model.TradeAccountFreeFeeCount</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 newbox">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="widget-user-username">资金统计</h3>
+                                <h5 class="widget-user-desc">Fund Statistics</h5>
+                            </div>
+                            <div class="card-footer p-0 widget-user-header">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">交易保证金总额 <span class="float-right badge bg-primary">@Model.BorrowDepositMoney</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">本日合约通过总额 <span class="float-right badge bg-primary">@Model.BorrowMoneyToday</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">本日入金总额<span class="float-right badge bg-primary">@Model.RechargeToday</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">本日提现总额 <span class="float-right badge bg-primary">@Model.WithdrawToday</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 newbox">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="widget-user-username">会员统计</h3>
+                                <h5 class="widget-user-desc">Member Statistics</h5>
+                            </div>
+                            <div class="card-footer p-0 widget-user-header">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(249)">本日新注册会员数 <span class="float-right badge bg-primary">@Model.MemberRegisterToday</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(249)">审核中会员数 <span class="float-right badge bg-primary">@Model.MemberVerifying</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" onclick="verify(249)">总会员数 <span class="float-right badge bg-primary">@Model.TotalMember</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<script>function verify(id_) {
+        $.ajax({
+            url: '/Home/verify',
+            type: 'Post',
+            data: { id: id_ },
+            success: function (data) {
+                // 在這裡處理成功返回的數據
+                var combine = data.url + "?hasPermission=" + data.hasPermission;
+                window.location.href = combine;
+            },
+            error: function (error) {
+                // 在這裡處理錯誤
+                console.error('Error:', error);
+            }
+        });
+    }</script>

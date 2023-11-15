@@ -1,0 +1,43 @@
+﻿@{
+    var MainMenu = ViewData["Menu"] as List <NTKServer.ViewModels.Menu.MainMenuVm >;
+}
+
+<li class='sidebar-title'>Pages</li>
+
+@{
+    if (MainMenu != null)
+    {
+        foreach (var item in MainMenu)
+        {
+            if (item.Child == null)
+            {
+                <li class="sidebar-item @item.Active">
+
+                    <a href="@item.Url" class='sidebar-link'>
+                        <i class="fa @item.IconClass"></i>
+                        <span>@item.Title</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="sidebar-item @item.Active has-sub">
+
+                    <a href="@item.Url" class='sidebar-link'>
+                        <i class="fa @item.IconClass"></i>
+                        <span>@item.Title</span>
+                    </a>
+
+                    <ul class="submenu @item.Active">
+                        @foreach (var childItem in item.Child)
+                        {
+                            <li>
+                                <a href="@childItem.Url">@childItem.Title</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        }
+    }
+}

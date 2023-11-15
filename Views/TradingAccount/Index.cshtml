@@ -1,0 +1,109 @@
+@using NTKServer.ViewModels.BorrowPlan;
+@using NTKServer.ViewModels.TradingAccount;
+@model TradingAccountVm
+@{
+    var Filter = (TradingAccountFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="@Filter.account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["member_name"]</label>
+				<input asp-for="@Filter.member_name" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["market"]</label>
+				<select asp-for="@Filter.market" asp-items="@(new SelectList(ViewBag.market, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+					<option value="">@lang["market"]</option>
+				</select>
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="@Filter.sub_account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["status"]</label>
+				<select asp-for="@Filter.status" asp-items="@(new SelectList(ViewBag.status, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+					<option value="">@lang["status"]</option>
+				</select>
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["loan_type"]</label>
+				<select asp-for="@Filter.loan_type" asp-items="@(new SelectList(ViewBag.borrowType, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+					<option value="">@lang["loan_type"]</option>
+				</select>
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["end_time"]</label>
+				<input type="date" asp-for="@Filter.end_time" class="form-control" />
+			</div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+				<th>@lang["public:option"]</th>
+				<th>@lang["public:mem_account"]</th>
+				<th>@lang["public:mem_nickname"]</th>
+				<th>@lang["market"]</th>
+				<th>@lang["sub_account"]</th>
+				<th>@lang["balance"]</th>
+				<th>@lang["status"]</th>
+				<th>@lang["loan_type"]</th>
+				<th>@lang["warningline"]</th>
+				<th>@lang["breakline"]</th>
+				<th>@lang["position_value"]</th>
+				<th>@lang["begin_time"]</th>
+				<th>@lang["end_time"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+					<td>
+						<div class="dropdown">
+							<button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+								<i class="fa fa-bars"></i>
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								@Html.ActionLink((string)@lang["today_order"], "Index", "UserTradeOrder", new { subAccount = item.sub_account }, new { @class = "dropdown-item" })
+								@Html.ActionLink((string)@lang["today_deal"], "Index", "UserTradeDeal", new { subAccount = item.sub_account }, new { @class = "dropdown-item" })
+								@Html.ActionLink((string)@lang["holding"], "Index", "UserTradePosition", new { subAccount = item.sub_account }, new { @class = "dropdown-item" })
+								@Html.ActionLink((string)@lang["money_record"], "Index", "TradeMoneyRecord", new { subAccount = item.sub_account }, new { @class = "dropdown-item" })
+								@Html.ActionLink((string)@lang["cancel_recore"], "Index", "TradeCancel", new { subAccount = item.sub_account }, new { @class = "dropdown-item" })
+							</div>
+						</div>
+					</td>
+					<td>@Html.DisplayFor(modelItem => item.account)</td>
+					<td>@Html.DisplayFor(modelItem => item.member_name)</td>
+				<td>@Html.DisplayFor(modelItem => item.market)</td>
+				<td>@Html.DisplayFor(modelItem => item.sub_account)</td>
+				<td>@Html.DisplayFor(modelItem => item.balance)</td>
+				<td>@Html.DisplayFor(modelItem => item.statusText)</td>
+				<td>@Html.DisplayFor(modelItem => item.loan_type)</td>
+				<td>@Html.DisplayFor(modelItem => item.warningline)</td>
+				<td>@Html.DisplayFor(modelItem => item.breakline)</td>
+				<td>@Html.DisplayFor(modelItem => item.position_value)</td>
+				<td>@Html.DisplayFor(modelItem => item.begin_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.end_time)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

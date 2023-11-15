@@ -1,0 +1,53 @@
+@model Models.Dto.MutilangSubjectDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate" enctype="multipart/form-data">
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["enable"]</label>
+				<input asp-for="enable" class="form-control" />
+				<span asp-validation-for="enable" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["icon"]</label>
+							 <input asp-for="icon" class="form-control" readonly />
+							 <span asp-validation-for="icon" class="text-danger"></span>
+                <input asp-for="icon_file" accept="image/*" />
+                <span asp-validation-for="icon_file" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="admin_default" /> @lang["admin_default"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="app_default" /> @lang["app_default"]
+			</label>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

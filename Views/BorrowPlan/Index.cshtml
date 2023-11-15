@@ -1,0 +1,62 @@
+@using NTKServer.ViewModels.BorrowPlan;
+@model BorrowPlanVm
+@{
+    var Filter = (BorrowPlanFilter)@Model.filter;
+    var lang = ViewBag.Lang;
+}
+
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+            <div class="col-auto">
+                <label class="control-label">@lang["market"]</label>
+                <select asp-for="@Filter.market" asp-items="@(new SelectList(ViewBag.market, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+                    <option value="">@lang["market"]</option>
+                </select>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<div class="">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["pk"]</th>
+                <th>@lang["market"]</th>
+                <th>@lang["enable"]</th>
+                <th>@lang["borrow_type"]</th>
+                <th>@lang["name"]</th>
+
+                <th>@lang["public:option"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.pk)</td>
+                    <td>@Html.DisplayFor(modelItem => item.market)</td>
+                    <td>@Html.DisplayFor(modelItem => item.enable)</td>
+                    <td>@Html.DisplayFor(modelItem => item.borrow_type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.name)</td>
+
+                    <td>
+                        @Html.ActionLink((string)@lang["public:edit"], "Edit", new { pk = item.pk }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

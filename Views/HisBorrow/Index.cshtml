@@ -1,0 +1,132 @@
+@using NTKServer.ViewModels.HisBorrow;
+@model HisBorrowVm
+@{
+    var Filter = (HisBorrowFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="@Filter.account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["member_name"]</label>
+				<input asp-for="@Filter.member_name" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="@Filter.sub_account" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["borrow_type"]</label>
+				<input asp-for="@Filter.borrow_type" class="form-control" />
+			</div>
+			<div class="col-auto">
+				<label class="control-label">@lang["order_id"]</label>
+				<input asp-for="@Filter.order_id" class="form-control" />
+			</div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>			
+				<th>@lang["account"]</th>
+				<th>@lang["member_name"]</th>
+				<th>@lang["sub_account"]</th>
+				<th>@lang["status"]</th>
+				<th>@lang["market"]</th>
+				<th>@lang["borrow_type"]</th>
+				<th>@lang["init_money"]</th>
+				<th>@lang["balance"]</th>
+				<th>@lang["deposit_money"]</th>
+				<th>@lang["multiple"]</th>
+				<th>@lang["auto_renewal"]</th>
+				<th>@lang["pk"]</th>
+				<th>@lang["order_id"]</th>
+				<th>@lang["borrow_interest"]</th>
+				<th>@lang["begin_time"]</th>
+				<th>@lang["end_time"]</th>
+				<th>@lang["create_time"]</th>
+				<th>@lang["verify_time"]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							@Html.ActionLink((string)@lang["public:detail"], "Edit", new { pk = item.pk }, new { @class = "dropdown-item" })
+
+                        </div>
+                    </div>
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.account)</td>
+				<td>@Html.DisplayFor(modelItem => item.member_name)</td>
+				<td>@Html.DisplayFor(modelItem => item.sub_account)</td>
+					<td>@Html.DisplayFor(modelItem => item.statusTxt)</td>
+				<td>@Html.DisplayFor(modelItem => item.market)</td>
+				<td>@Html.DisplayFor(modelItem => item.borrow_type)</td>
+				<td>@Html.DisplayFor(modelItem => item.init_money)</td>
+				<td>@Html.DisplayFor(modelItem => item.balance)</td>
+				<td>@Html.DisplayFor(modelItem => item.deposit_money)</td>
+				<td>@Html.DisplayFor(modelItem => item.multiple)</td>
+				<td>@Html.DisplayFor(modelItem => item.auto_renewal)</td>
+				<td>@Html.DisplayFor(modelItem => item.pk)</td>
+				<td>@Html.DisplayFor(modelItem => item.order_id)</td>
+				<td>@Html.DisplayFor(modelItem => item.borrow_interest)</td>
+				<td>@Html.DisplayFor(modelItem => item.begin_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.end_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.create_time)</td>
+				<td>@Html.DisplayFor(modelItem => item.verify_time)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 分頁處理 -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+				LiElementClasses = new string[] { "page-item" },
+				PageClasses = new string[] { "page-link" },
+				LinkToFirstPageFormat ="<<",
+				LinkToPreviousPageFormat = "<",
+				LinkToNextPageFormat = ">",
+				LinkToLastPageFormat = ">>",
+
+				MaximumPageNumbersToDisplay = 8
+            })
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">@lang["public:total_count"]: @Model.list.TotalItemCount </div>
+</div>

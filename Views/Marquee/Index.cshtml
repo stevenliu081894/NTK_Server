@@ -1,0 +1,60 @@
+@using NTKServer.ViewModels.Marquee;
+@model MarqueeVm
+@{
+    var Filter = (MarqueeFilter)@Model.filter;
+	var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+			<div class="col-auto">
+				<label class="control-label">@lang["lang"]</label>
+                <select asp-for="@Filter.lang" asp-items="@(new SelectList(ViewBag.langDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+                    <option value="">@lang["lang"]</option>
+                </select>
+			</div>
+            <div class="col-auto">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary" />
+            </div>
+        </div>       
+    </form>
+</div>
+@Html.ActionLink((string)@lang["public:append"], "Create", new {}, new { @class = "btn btn-primary"})
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+				<th>@lang["lang"]</th>
+				<th>@lang["enable"]</th>
+				<th>@lang["msg"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							@Html.ActionLink((string)@lang["public:edit"], "Edit", new { pk = item.pk }, new { @class = "dropdown-item" })
+							@Html.ActionLink((string)@lang["public:delete"], "Delete", new { pk = item.pk }, new { @class = "dropdown-item", onclick = "return confirm('@lang[\"public:confirm_delete\"]');"})
+
+                        </div>
+                    </div>
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.lang)</td>
+				<td>@Html.DisplayFor(modelItem => item.enable)</td>
+				<td>@Html.DisplayFor(modelItem => item.msg)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

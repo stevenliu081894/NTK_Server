@@ -1,0 +1,75 @@
+﻿@using NTKServer.ViewModels.MultiLang;
+@model MultiLangLangSearchVm
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>语系代号</th>
+            <th>语系</th>
+            <th>是否启用</th>
+            <th>后端预设语言</th>
+            <th>用户端预设语言</th>
+            <th>管理</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.list)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.enableTxt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adminDefaultTxt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.appDefaultTxt)
+                </td>
+                <td>
+                    @{
+                        if (Convert.ToBoolean(@ViewData["sys_market_edit_btn"]) == true)
+                        {
+                            @Html.ActionLink("編輯", "Edit", new { lang=item.lang }, new { @class = "btn btn-primary" })
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- 分頁處理 (不需要調整, 直接複製貼上)-->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            LinkToFirstPageFormat ="<<",
+            LinkToPreviousPageFormat = "<",
+            LinkToNextPageFormat = ">",
+            LinkToLastPageFormat = ">>",
+
+            MaximumPageNumbersToDisplay = 8
+            }
+            )
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">总笔数: @Model.list.TotalItemCount </div>
+</div>

@@ -1,0 +1,112 @@
+﻿@using NTKServer.ViewModels.Demo
+@model DemoSearchVm
+@{
+    var Filter = (DemoSearchFilter)@Model.filter;
+}
+
+<h2>重点说明</h2>
+<ul>
+    <li>搜寻model 的栏位型态全部都要加 ?, 例如 string? </li>
+    <li>搜寻model 的栏位 上方加上 [Where("比较式, 例如 =", "要比对的db 栏位")] </li>
+    <li>最后呼叫  SqlTool.Build(搜寻model) 产生sql</li>
+</ul>
+
+<div class="card">
+        <form asp-action="PostIndex">
+        <div class="card-body row">
+
+            <div class="col-auto">
+                <label class="control-label">編號</label>
+                <input asp-for="@Filter.pk" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">申请单号</label>
+                <input asp-for="@Filter.sn" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">交易帐号</label>
+                <input asp-for="@Filter.sub_account" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">開始時間</label>
+                <input asp-for="@Filter.beginTime" type="date"  class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">結束時間</label>
+                <input asp-for="@Filter.endTime" type="date"  class="form-control" />
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="搜尋" class="btn btn-primary" />
+            </div>
+        </div>
+        </form>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                申请单号
+            </th>
+            <th>
+                交易帐号
+            </th>
+            <th>
+                单号时间
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.list)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sub_account)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.request_time)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- 分頁處理 (不需要調整, 直接複製貼上)-->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("PostSearch", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            LinkToFirstPageFormat ="<<",
+            LinkToPreviousPageFormat = "<",
+            LinkToNextPageFormat = ">",
+            LinkToLastPageFormat = ">>",
+
+            MaximumPageNumbersToDisplay = 8
+            }
+            )
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">总笔数: @Model.list.TotalItemCount </div>
+</div>

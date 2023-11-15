@@ -1,0 +1,102 @@
+@model Models.Dto.StockUsDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			<div class="form-group">
+				<label class="control-label">@lang["stock_code"]</label>
+				<input asp-for="stock_code" readonly class="form-control" />
+				<span asp-validation-for="stock_code" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["stock_name"]</label>
+				<input asp-for="stock_name" class="form-control" />
+				<span asp-validation-for="stock_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<input asp-for="market" class="form-control" />
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="enable" /> @lang["enable"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="disable_alwayse" /> @lang["disable_alwayse"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="program_enable" /> @lang["program_enable"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["program_msg"]</label>
+				<input asp-for="program_msg" class="form-control" />
+				<span asp-validation-for="program_msg" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["close_reason"]</label>
+				<input asp-for="close_reason" class="form-control" />
+				<span asp-validation-for="close_reason" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["opentrade"]</label>
+				<input asp-for="opentrade" class="form-control" />
+				<span asp-validation-for="opentrade" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["update_datetime"]</label>
+				<input asp-for="update_datetime" class="form-control" />
+				<span asp-validation-for="update_datetime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["yclose"]</label>
+				<input asp-for="yclose" class="form-control" />
+				<span asp-validation-for="yclose" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["final_price"]</label>
+				<input asp-for="final_price" class="form-control" />
+				<span asp-validation-for="final_price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["volume"]</label>
+				<input asp-for="volume" class="form-control" />
+				<span asp-validation-for="volume" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["full_info"]</label>
+				<input asp-for="full_info" class="form-control" />
+				<span asp-validation-for="full_info" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["limitbuy"]</label>
+				<input asp-for="limitbuy" class="form-control" />
+				<span asp-validation-for="limitbuy" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["limitsell"]</label>
+				<input asp-for="limitsell" class="form-control" />
+				<span asp-validation-for="limitsell" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

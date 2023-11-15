@@ -1,0 +1,84 @@
+@using NTKServer.ViewModels.AdminBank;
+@model AdminBankVm
+@{
+    var Filter = (AdminBankFilter)@Model.filter;
+    var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+            <div class="col-auto">
+                <label class="control-label">@lang["type"]</label>
+                <input asp-for="@Filter.type" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["currency"]</label>
+                <input asp-for="@Filter.currency" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["card"]</label>
+                <input asp-for="@Filter.card" class="form-control" />
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+@Html.ActionLink((string)@lang["public:append"], "Create", new {}, new { @class = "btn btn-primary"})
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+                <th>@lang["pk"]</th>
+                <th>@lang["type"]</th>
+                <th>@lang["currency"]</th>
+                <th>@lang["card"]</th>
+                <th>@lang["bank_name"]</th>
+                <th>@lang["open_bank"]</th>
+                <th>@lang["payee"]</th>
+                <th>@lang["notes"]</th>
+                <th>@lang["status"]</th>
+                <th>@lang["viplists"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @Html.ActionLink((string)@lang["public:edit"], "Edit", new { pk = item.pk }, new { @class = "dropdown-item" })
+                                @{
+                                    string del = "return confirm('" + (string)@lang["public:confirm_delete"] + "')";
+                                }
+                                @Html.ActionLink((string)@lang["public:delete"], "Delete", new { pk = item.pk }, new { @class = "dropdown-item", onclick = @del})
+                            </div>
+                        </div>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.pk)</td>
+                    <td>@Html.DisplayFor(modelItem => item.type)</td>
+                    <td>@Html.DisplayFor(modelItem => item.currency)</td>
+                    <td>@Html.DisplayFor(modelItem => item.card)</td>
+                    <td>@Html.DisplayFor(modelItem => item.bank_name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.open_bank)</td>
+                    <td>@Html.DisplayFor(modelItem => item.payee)</td>
+                    <td>@Html.DisplayFor(modelItem => item.notes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.viplists)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

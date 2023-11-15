@@ -1,0 +1,50 @@
+@model NTKServer.ViewModels.MessageRecord.MessageRecordEditVm
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:detail"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+		<form asp-action="Detail">
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" readonly />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" readonly />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["info"]</label>
+				<textarea asp-for="info" name="info" id="info" class="form-control" ></textarea>
+				<span asp-validation-for="info" class="text-danger"></span>
+			</div>
+		</form>
+    </div>
+</div>
+<td>
+		@Html.ActionLink((string)@lang["reply"], "Create", new { member = Model.receiver_fk }, new { @class = "btn btn-primary" })
+</td>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+@section Scripts{
+    <script src="~/assets/ckeditor5/ckeditor.js" > </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#info' ))
+			.then(editor => {
+				editor.enableReadOnlyMode( '' );
+                })
+            .catch( error => {
+                alert(error);
+                console.error( error );
+            } );
+    </script>
+}

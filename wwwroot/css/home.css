@@ -1,0 +1,31 @@
+﻿.widget-user-username {
+    font-size: 20px;
+}
+
+.widget-user-desc
+{
+    font-size: 14px;
+}
+
+.widget-user-header {
+    border-top: 3px solid #007bff !important;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+    margin-left: 0 !important;
+}
+
+.newbox {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+}
+
+.newbox .box_content .card-footer .flex-column > li {
+    background-color: #FFF !important;
+}
+
+.nav-item {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.float-right {
+    float:right !important;
+}

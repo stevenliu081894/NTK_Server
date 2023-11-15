@@ -1,0 +1,106 @@
+@model Models.Dto.TradeMoneyRecordDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+			<div class="form-group">
+				<label class="control-label">@lang["create_datetime"]</label>
+				<input asp-for="create_datetime" class="form-control" />
+				<span asp-validation-for="create_datetime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="sub_account" class="form-control" />
+				<span asp-validation-for="sub_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sn"]</label>
+				<input asp-for="sn" class="form-control" />
+				<span asp-validation-for="sn" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["temp_id"]</label>
+				<input asp-for="temp_id" class="form-control" />
+				<span asp-validation-for="temp_id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["info"]</label>
+				<input asp-for="info" class="form-control" />
+				<span asp-validation-for="info" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["op"]</label>
+				<input asp-for="op" class="form-control" />
+				<span asp-validation-for="op" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["affect"]</label>
+				<input asp-for="affect" class="form-control" />
+				<span asp-validation-for="affect" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["exchange"]</label>
+				<input asp-for="exchange" class="form-control" />
+				<span asp-validation-for="exchange" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["wallet_amount"]</label>
+				<input asp-for="wallet_amount" class="form-control" />
+				<span asp-validation-for="wallet_amount" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["reviewer"]</label>
+				<input asp-for="reviewer" class="form-control" />
+				<span asp-validation-for="reviewer" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["balance"]</label>
+				<input asp-for="balance" class="form-control" />
+				<span asp-validation-for="balance" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<input asp-for="market" class="form-control" />
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["trade_deal_fk"]</label>
+				<input asp-for="trade_deal_fk" class="form-control" />
+				<span asp-validation-for="trade_deal_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["order_type"]</label>
+				<input asp-for="order_type" class="form-control" />
+				<span asp-validation-for="order_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["stock_code"]</label>
+				<input asp-for="stock_code" class="form-control" />
+				<span asp-validation-for="stock_code" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["stock_name"]</label>
+				<input asp-for="stock_name" class="form-control" />
+				<span asp-validation-for="stock_name" class="text-danger"></span>
+			</div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

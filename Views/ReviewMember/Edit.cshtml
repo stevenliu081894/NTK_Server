@@ -1,0 +1,256 @@
+@model Models.Dto.MemberDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			<div class="form-group">
+				<label class="control-label">@lang["admin_user_fk"]</label>
+				<input asp-for="admin_user_fk" class="form-control" />
+				<span asp-validation-for="admin_user_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["id"]</label>
+				<input asp-for="id" class="form-control" />
+				<span asp-validation-for="id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["nickname"]</label>
+				<input asp-for="nickname" class="form-control" />
+				<span asp-validation-for="nickname" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["real_name"]</label>
+				<input asp-for="real_name" class="form-control" />
+				<span asp-validation-for="real_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["email"]</label>
+				<input asp-for="email" class="form-control" />
+				<span asp-validation-for="email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["mobile_country"]</label>
+				<input asp-for="mobile_country" class="form-control" />
+				<span asp-validation-for="mobile_country" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["mobile"]</label>
+				<input asp-for="mobile" class="form-control" />
+				<span asp-validation-for="mobile" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["passwd"]</label>
+				<input asp-for="passwd" class="form-control" />
+				<span asp-validation-for="passwd" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["token"]</label>
+				<input asp-for="token" class="form-control" />
+				<span asp-validation-for="token" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sub_account"]</label>
+				<input asp-for="sub_account" class="form-control" />
+				<span asp-validation-for="sub_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["paywd"]</label>
+				<input asp-for="paywd" class="form-control" />
+				<span asp-validation-for="paywd" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["id_card"]</label>
+				<input asp-for="id_card" class="form-control" />
+				<span asp-validation-for="id_card" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["id_card_type"]</label>
+				<input asp-for="id_card_type" class="form-control" />
+				<span asp-validation-for="id_card_type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="id_auth" /> @lang["id_auth"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="status" /> @lang["status"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="is_del" /> @lang["is_del"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["create_time"]</label>
+				<input asp-for="create_time" class="form-control" />
+				<span asp-validation-for="create_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["create_ip"]</label>
+				<input asp-for="create_ip" class="form-control" />
+				<span asp-validation-for="create_ip" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_time"]</label>
+				<input asp-for="last_login_time" class="form-control" />
+				<span asp-validation-for="last_login_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_ip"]</label>
+				<input asp-for="last_login_ip" class="form-control" />
+				<span asp-validation-for="last_login_ip" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["urgent_name"]</label>
+				<input asp-for="urgent_name" class="form-control" />
+				<span asp-validation-for="urgent_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["urgent_mobile"]</label>
+				<input asp-for="urgent_mobile" class="form-control" />
+				<span asp-validation-for="urgent_mobile" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["auth_time"]</label>
+				<input asp-for="auth_time" class="form-control" />
+				<span asp-validation-for="auth_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["auth_result"]</label>
+				<input asp-for="auth_result" class="form-control" />
+				<span asp-validation-for="auth_result" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["head_img"]</label>
+				<input asp-for="head_img" class="form-control" />
+				<span asp-validation-for="head_img" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card_pic_front"]</label>
+				<input asp-for="card_pic_front" class="form-control" />
+				<span asp-validation-for="card_pic_front" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card_pic_back"]</label>
+				<input asp-for="card_pic_back" class="form-control" />
+				<span asp-validation-for="card_pic_back" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card_pic_hand"]</label>
+				<input asp-for="card_pic_hand" class="form-control" />
+				<span asp-validation-for="card_pic_hand" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["invitation_code"]</label>
+				<input asp-for="invitation_code" class="form-control" />
+				<span asp-validation-for="invitation_code" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["recommend"]</label>
+				<input asp-for="recommend" class="form-control" />
+				<span asp-validation-for="recommend" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["recommend_id"]</label>
+				<input asp-for="recommend_id" class="form-control" />
+				<span asp-validation-for="recommend_id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card_pic"]</label>
+				<input asp-for="card_pic" class="form-control" />
+				<span asp-validation-for="card_pic" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["level_id"]</label>
+
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("1")" class="form-check-input" value="1" /> 1
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("2")" class="form-check-input" value="2" /> 2
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("3")" class="form-check-input" value="3" /> 3
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("4")" class="form-check-input" value="4" /> 4
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("5")" class="form-check-input" value="5" /> 5
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("6")" class="form-check-input" value="6" /> 6
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("7")" class="form-check-input" value="7" /> 7
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("8")" class="form-check-input" value="8" /> 8
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="level" checked="@Model.level_id?.Contains("9")" class="form-check-input" value="9" /> 9
+				</label>
+
+				<input id="level_id" name="level_id" hidden />
+				<span asp-validation-for="level_id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["remark"]</label>
+				<input asp-for="remark" class="form-control" />
+				<span asp-validation-for="remark" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["country"]</label>
+				<input asp-for="country" class="form-control" />
+				<span asp-validation-for="country" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["time_zone"]</label>
+				<input asp-for="time_zone" class="form-control" />
+				<span asp-validation-for="time_zone" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+				<input asp-for="lang" class="form-control" />
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="sms_status" /> @lang["sms_status"]
+			</label>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="email_status" /> @lang["email_status"]
+			</label>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

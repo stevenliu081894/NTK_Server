@@ -1,0 +1,61 @@
+@model Models.Dto.StockHolidayDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["market"]</label>
+				<select asp-for="market" asp-items="@(new SelectList(ViewBag.market, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+				</select>
+				<span asp-validation-for="market" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["name"]</label>
+				<input asp-for="name" class="form-control" />
+				<span asp-validation-for="name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["year"]</label>
+				<input asp-for="year" class="form-control" />
+				<span asp-validation-for="year" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["date"]</label>
+				<input asp-for="date" type="date" class="form-control" />
+				<span asp-validation-for="date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="is_allday" /> @lang["is_allday"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["open"]</label>
+				<input asp-for="open" type="time" class="form-control" />
+				<span asp-validation-for="open" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["close"]</label>
+				<input asp-for="close" type="time" class="form-control" />
+				<span asp-validation-for="close" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>

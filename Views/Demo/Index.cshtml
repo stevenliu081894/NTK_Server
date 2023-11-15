@@ -1,0 +1,84 @@
+﻿@model IPagedList<NTKServer.ViewModels.Demo.DemoMemberListVm>
+
+提醒: 程式碼務必要加上 try{} catch (AppException ex) {}
+<br />
+
+@Html.ActionLink("新增", "Add", new {}, new { @class = "btn btn-primary"})
+
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                帳號
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.account)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.realName)
+                </td>
+                <td>
+                    @{
+                        if (Convert.ToBoolean(@ViewData["btn1"]) == true)
+                        {
+                            @Html.ActionLink("編輯畫面", "Edit", new { id=item.id }, new { @class = "btn btn-primary" })
+                        }
+
+                        if (Convert.ToBoolean(ViewData["btn2"]) == true)
+                        {
+                            @Html.ActionLink("權限控制範例", "Details", new { id=item.id }, new { @class = "btn btn-secondary" })
+                        }
+                        // @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "btn btn-secondary" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<!-- 分頁處理 (不需要調整, 直接複製貼上)-->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            LinkToFirstPageFormat ="<<",
+            LinkToPreviousPageFormat = "<",
+            LinkToNextPageFormat = ">",
+            LinkToLastPageFormat = ">>",
+
+            MaximumPageNumbersToDisplay = 8
+            }
+            )
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">总笔数: @Model.TotalItemCount </div>
+</div>
+

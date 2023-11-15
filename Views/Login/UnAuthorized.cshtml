@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forbidden - 你沒有權限</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+
+    <link rel="shortcut icon" href="~/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/app.css">
+</head>
+<body>
+    <div id="error">
+
+        <div class="container text-center pt-32">
+            <h1 class='error-title'>非法使用</h1>
+            <p>你沒有使用權限</p>
+            <a href="javascript:history.back()" class='btn btn-secondary'>返回上一頁</a>
+            <a href="~/Login/Index" class='btn btn-primary'>重新登錄</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@using NTKServer.ViewModels.MultiLang;
+@model MultiLangLangVm
+
+<h4>編輯</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MultiLangLangPostEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="lang" class="control-label"></label>
+                <input asp-for="lang" class="form-control" readonly />
+                <span asp-validation-for="lang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="title" class="control-label"></label>
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="enable" class="control-label"></label>
+                <br />
+                @foreach (var gender in Model.enableOption)
+                {
+                    <input type="radio" asp-for="enableTxt" value="@gender" />
+                    @gender
+                }
+                <span asp-validation-for="enableTxt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="admin_default" /> 预设
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="app_default" /> 预设
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isSucceed" /> 展示儲存成功
+                </label>
+                <p>儲存結果展示範本: 打勾儲存會成功, 不打勾會返回錯誤</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="MultiLangLangIndex">返回列表</a>
+</div>
+

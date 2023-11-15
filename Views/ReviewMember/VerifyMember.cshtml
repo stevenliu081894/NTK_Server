@@ -1,0 +1,103 @@
+﻿@using NTKServer.ViewModels.ReviewMember;
+@model VerifyMemberVm
+@{
+	var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:review"]</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="VerifyMemberPost" id="form1">
+		
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["id_card_type"]</label>
+				<input asp-for="idCardTxt" readonly class="form-control" />
+				<span asp-validation-for="idCardTxt" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["card_pic_front"]</label>
+				@if(Model.card_pic_front == ""){
+					<input class="form-control" readonly />
+				}
+				else{
+					<div >
+					<img src="@Url.Content(Model.card_pic_front)" readonly />
+					</div>
+				}
+				<span asp-validation-for="card_pic_front" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["real_name"]</label>
+				<input asp-for="real_name" class="form-control" readonly/>
+				<span asp-validation-for="real_name" class="text-danger"></span>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label">@lang["mobile_country"]</label>
+				<input asp-for="mobile_country" class="form-control" readonly/>
+				<span asp-validation-for="mobile_country" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["mobile"]</label>
+				<input asp-for="mobile" class="form-control" readonly/>
+				<span asp-validation-for="mobile" class="text-danger"></span>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label">@lang["email"]</label>
+				<input asp-for="email" class="form-control" readonly />
+				<span asp-validation-for="email" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["admin_user_fk"]</label>
+				@Html.DropDownList("admin_user_fk", @ViewBag.AdminUser as List<SelectListItem>, new {@class="form-select"} )
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["level_id"]</label>
+				<input asp-for="level_id" class="form-control" />
+				<span asp-validation-for="level_id" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["auth_result"]</label>
+				<textarea asp-for="auth_result" class="form-control"></textarea>
+				<span asp-validation-for="auth_result" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input id="verify_status" name="verify_status" hidden />
+				<input type="button" value="@lang["public:approve"]" class="btn btn-primary" onclick="review(1);" />
+				<input type="button" value="@lang["public:reject"]" class="btn btn-secondary" onclick="review(2,'@lang["reject_message"]');" />
+				<input type="button" value="@lang["public:delete"]" class="btn btn-secondary" onclick="review(3);" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+<script>
+	function review(result, message) {
+		if (result == 2 && $("#auth_result").val() == '') {
+			window.alert(message);
+			return;
+		}
+		$("#verify_status").val(result);
+		$("#form1").submit();
+	}
+</script>
+

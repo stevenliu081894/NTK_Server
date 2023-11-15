@@ -1,0 +1,101 @@
+@model NTKServer.ViewModels.EndWalletWithdraw.EndWalletWithdrawEditVm
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+			<div class="form-group">
+				<label class="control-label">@lang["verify_time"]</label>
+				<input asp-for="verify_time" class="form-control" />
+				<span asp-validation-for="verify_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["verify_admin_pk"]</label>
+				<input asp-for="verify_admin_pk" class="form-control" />
+				<span asp-validation-for="verify_admin_pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["status"]</label>
+				<input asp-for="status" class="form-control" />
+				<span asp-validation-for="status" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["reject_result"]</label>
+				<input asp-for="reject_result" class="form-control" />
+				<span asp-validation-for="reject_result" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["create_time"]</label>
+				<input asp-for="create_time" class="form-control" />
+				<span asp-validation-for="create_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["order_no"]</label>
+				<input asp-for="order_no" class="form-control" />
+				<span asp-validation-for="order_no" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["wallet_amount"]</label>
+				<input asp-for="wallet_amount" class="form-control" />
+				<span asp-validation-for="wallet_amount" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["exchange"]</label>
+				<input asp-for="exchange" class="form-control" />
+				<span asp-validation-for="exchange" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["money"]</label>
+				<input asp-for="money" class="form-control" />
+				<span asp-validation-for="money" class="text-danger"></span>
+			</div>
+
+
+			<div class="form-group">
+				<label class="control-label">@lang["bank"]</label>
+				<input asp-for="bank" class="form-control" />
+				<span asp-validation-for="bank" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["branch"]</label>
+				<input asp-for="branch" class="form-control" />
+				<span asp-validation-for="branch" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card"]</label>
+				<input asp-for="card" class="form-control" />
+				<span asp-validation-for="card" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["bank_account"]</label>
+				<input asp-for="bank_account" class="form-control" />
+				<span asp-validation-for="bank_account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["nickname"]</label>
+				<input asp-for="nickname" class="form-control" />
+				<span asp-validation-for="nickname" class="text-danger"></span>
+			</div>
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

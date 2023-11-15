@@ -1,0 +1,72 @@
+﻿@model NTKServer.ViewModels.WalletRecord.WalletChangeExceptionVm
+@{
+	var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="PostChangeException">
+			
+			<div class="form-group">
+				<label class="control-label">@lang["member_fk"]</label>
+				<input asp-for="member_fk" readonly class="form-control" />
+				<span asp-validation-for="member_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" readonly />
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["real_name"]</label>
+				<input asp-for="real_name" class="form-control" readonly />
+				<span asp-validation-for="real_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["reason"]</label>
+				<input asp-for="reason" class="form-control" />
+				<span asp-validation-for="reason" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" readonly />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["balance"]</label>
+				<input asp-for="balance" class="form-control" readonly />
+				<span asp-validation-for="balance" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["change_balance"]</label>
+				<input asp-for="change_balance" class="form-control" />
+				<span asp-validation-for="change_balance" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["coupon"]</label>
+				<input asp-for="coupon" class="form-control" readonly />
+				<span asp-validation-for="coupon" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label">@lang["change_coupon"]</label>
+				<input asp-for="change_coupon" class="form-control" />
+				<span asp-validation-for="change_coupon" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

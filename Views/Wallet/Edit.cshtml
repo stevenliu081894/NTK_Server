@@ -1,0 +1,133 @@
+@model NTKServer.ViewModels.Wallet.WalletEditVm
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostEdit">
+			 <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+			<div class="form-group">
+				<label class="form-check-label">
+					<input class="form-check-input" asp-for="status" /> @lang["status"]
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["member_fk"]</label>
+				<input asp-for="member_fk" readonly class="form-control" />
+				<span asp-validation-for="member_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["account"]</label>
+				<input asp-for="account" class="form-control" readonly/>
+				<span asp-validation-for="account" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["nickname"]</label>
+				<input asp-for="nickname" class="form-control" readonly />
+				<span asp-validation-for="nickname" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["real_name"]</label>
+				<input asp-for="real_name" class="form-control" readonly/>
+				<span asp-validation-for="real_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" readonly />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["balance"]</label>
+				<input asp-for="balance" class="form-control" readonly />
+				<span asp-validation-for="balance" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["freeze"]</label>
+				<input asp-for="freeze" class="form-control" readonly/>
+				<span asp-validation-for="freeze" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["margin"]</label>
+				<input asp-for="margin" class="form-control" readonly/>
+				<span asp-validation-for="margin" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["richbox_balance"]</label>
+				<input asp-for="richbox_balance" class="form-control" readonly />
+				<span asp-validation-for="richbox_balance" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["coupon"]</label>
+				<input asp-for="coupon" class="form-control" readonly/>
+				<span asp-validation-for="coupon" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["total_recharge"]</label>
+				<input asp-for="total_recharge" class="form-control" readonly />
+				<span asp-validation-for="total_recharge" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["total_withdraw"]</label>
+				<input asp-for="total_withdraw" class="form-control" readonly/>
+				<span asp-validation-for="total_withdraw" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_update_time"]</label>
+				<input asp-for="last_update_time" class="form-control" readonly />
+				<span asp-validation-for="last_update_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["admin_user_fk"]</label>
+				<input asp-for="admin_user_fk" class="form-control" readonly />
+				<span asp-validation-for="admin_user_fk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["email"]</label>
+				<input asp-for="email" class="form-control" readonly />
+				<span asp-validation-for="email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["id_auth"]</label>
+				<input asp-for="id_auth" class="form-control" readonly />
+				<span asp-validation-for="id_auth" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["create_time"]</label>
+				<input asp-for="create_time" class="form-control" readonly />
+				<span asp-validation-for="create_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["create_ip"]</label>
+				<input asp-for="create_ip" class="form-control" readonly />
+				<span asp-validation-for="create_ip" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_time"]</label>
+				<input asp-for="last_login_time" class="form-control" readonly />
+				<span asp-validation-for="last_login_time" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["last_login_ip"]</label>
+				<input asp-for="last_login_ip" class="form-control" readonly/>
+				<span asp-validation-for="last_login_ip" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["auth_time"]</label>
+				<input asp-for="auth_time" class="form-control" readonly />
+				<span asp-validation-for="auth_time" class="text-danger"></span>
+			</div>
+
+           
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+

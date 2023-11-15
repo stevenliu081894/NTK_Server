@@ -1,0 +1,117 @@
+@using NTKServer.ViewModels.RecommendRegister;
+@model RecommendRegisterVm
+@{
+    var Filter = (RecommendRegisterFilter)@Model.filter;
+    var lang = ViewBag.Lang;
+}
+
+<div class="card">
+    <form asp-action="Index">
+        <div class="card-body row">
+            <div class="col-auto">
+                <label class="control-label">@lang["year"]</label>
+                <input asp-for="@Filter.year" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["month"]</label>
+                <input asp-for="@Filter.month" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["admin_user_fk"]</label>
+                <input asp-for="@Filter.admin_user_fk" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["account"]</label>
+                <input asp-for="@Filter.account" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["nickname"]</label>
+                <input asp-for="@Filter.nickname" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["real_name"]</label>
+                <input asp-for="@Filter.real_name" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["Inviteaccount"]</label>
+                <input asp-for="@Filter.Inviteaccount" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <label class="control-label">@lang["Invitenickname"]</label>
+                <input asp-for="@Filter.Invitenickname" class="form-control" />
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group pull-right">
+                <input type="submit" value="@lang["public:search"]" class="btn btn-primary pull-right" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["create_date"]</th>
+                <th>@lang["admin_user_fk"]</th>
+                <th>@lang["account"]</th>
+                <th>@lang["nickname"]</th>
+                <th>@lang["real_name"]</th>
+                <th>@lang["id_auth"]</th>
+                <th>@lang["level_id"]</th>
+                <th>@lang["invitation_code"]</th>
+                <th>@lang["first_borrow_date"]</th>
+                <th>@lang["Inviteaccount"]</th>
+                <th>@lang["Invitenickname"]</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.list)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.create_date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.admin_user_fk)</td>
+                    <td>@Html.DisplayFor(modelItem => item.account)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nickname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.real_name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.id_auth)</td>
+                    <td>@Html.DisplayFor(modelItem => item.level_id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.invitation_code)</td>
+                    <td>@Html.DisplayFor(modelItem => item.first_borrow_date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Inviteaccount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Invitenickname)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 分頁處理 -->
+<div class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
+
+    @if (Model != null)
+    {
+        <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+
+                @Html.PagedListPager((IPagedList)Model.list, page => Url.Action("Index", new {Model.filter, page}),
+            new X.PagedList.Web.Common.PagedListRenderOptions()
+            {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+            LinkToFirstPageFormat ="<<",
+            LinkToPreviousPageFormat = "<",
+            LinkToNextPageFormat = ">",
+            LinkToLastPageFormat = ">>",
+
+            MaximumPageNumbersToDisplay = 8
+            })
+            </ul>
+        </nav>
+    }
+
+    <div class="fw-normal small mt-4 mt-lg-0">@lang["public:total_count"]: @Model.list.TotalItemCount </div>
+</div>

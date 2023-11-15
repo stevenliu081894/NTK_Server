@@ -1,0 +1,31 @@
+@model NTKServer.ViewModels.Marquee.MarqueeReview
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:review"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostReview">
+
+            <div class="form-group">
+				<input id="result" name="result" hidden />
+				<input type="button" value="@lang["public:approve"]" class="btn btn-primary" onclick="review(true);"   />
+				<input type="button" value="@lang["public:reject"]" class="btn btn-secondary" onclick="review(false);"   />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+<script>
+	function review(result) {
+		
+		$("#result").val(result);
+		$("#form1").submit();
+	}
+</script>

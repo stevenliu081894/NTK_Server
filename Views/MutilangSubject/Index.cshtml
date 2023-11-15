@@ -1,0 +1,54 @@
+@model IEnumerable<Models.Dto.MutilangSubjectDto>
+@{
+   
+	var lang = ViewBag.Lang;
+}
+
+
+@Html.ActionLink((string)@lang["public:append"], "Create", new {}, new { @class = "btn btn-primary"})
+<div class="scoll_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@lang["public:option"]</th>
+				<th>@lang["lang"]</th>
+				<th>@lang["title"]</th>
+				<th>@lang["enable"]</th>
+				<th>@lang["icon"]</th>
+				<th>@lang["admin_default"]</th>
+				<th>@lang["app_default"]</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn icon btn-primary dropdown-toggle hide-arrow show" data-bs-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							@Html.ActionLink((string)@lang["public:edit"], "Edit", new { lang = item.lang }, new { @class = "dropdown-item" })
+							@{
+                            string del = "return confirm('" + (string)@lang["public:confirm_delete"] + "')";
+                        }
+							@Html.ActionLink((string)@lang["public:delete"], "Delete", new { lang = item.lang }, new { @class = "dropdown-item", onclick = @del })
+
+                        </div>
+                    </div>
+                    </td>
+				<td>@Html.DisplayFor(modelItem => item.lang)</td>
+				<td>@Html.DisplayFor(modelItem => item.title)</td>
+				<td>@Html.DisplayFor(modelItem => item.enable)</td>
+				<td>@Html.DisplayFor(modelItem => item.icon)</td>
+				<td>@Html.DisplayFor(modelItem => item.admin_default)</td>
+				<td>@Html.DisplayFor(modelItem => item.app_default)</td>
+					
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

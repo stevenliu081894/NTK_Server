@@ -1,0 +1,131 @@
+@model Models.Dto.AdminBankDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<h4>@lang["public:title_edit"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+		<form asp-action="PostEdit" id="form1">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<input asp-for="pk" readonly class="form-control" />
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["type"]</label>
+				<input asp-for="type" class="form-control" />
+				<span asp-validation-for="type" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["country"]</label>
+				<input asp-for="country" class="form-control" />
+				<span asp-validation-for="country" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["currency"]</label>
+				<input asp-for="currency" class="form-control" />
+				<span asp-validation-for="currency" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["card"]</label>
+				<input asp-for="card" class="form-control" />
+				<span asp-validation-for="card" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["SWIFT"]</label>
+				<input asp-for="SWIFT" class="form-control" />
+				<span asp-validation-for="SWIFT" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["bank_name"]</label>
+				<input asp-for="bank_name" class="form-control" />
+				<span asp-validation-for="bank_name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["open_bank"]</label>
+				<input asp-for="open_bank" class="form-control" />
+				<span asp-validation-for="open_bank" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["payee"]</label>
+				<input asp-for="payee" class="form-control" />
+				<span asp-validation-for="payee" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["notes"]</label>
+				<input asp-for="notes" class="form-control" />
+				<span asp-validation-for="notes" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["status"]</label>
+				<input asp-for="status" class="form-control" />
+				<span asp-validation-for="status" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["image"]</label>
+				<input asp-for="image" class="form-control" />
+				<span asp-validation-for="image" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["viplists"]</label>
+
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("1")" class="form-check-input" value="1" /> 1
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("2")" class="form-check-input" value="2" /> 2
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("3")" class="form-check-input" value="3" /> 3
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("4")" class="form-check-input" value="4" /> 4
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("5")" class="form-check-input" value="5" /> 5
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("6")" class="form-check-input" value="6" /> 6
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("7")" class="form-check-input" value="7" /> 7
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("8")" class="form-check-input" value="8" /> 8
+				</label>
+				<label class="form-check-label">
+					<input type="checkbox" name="viplist" checked="@Model.viplists?.Contains("9")" class="form-check-input" value="9" /> 9
+				</label>
+
+				<input id="viplists" name="viplists" hidden />
+				<span asp-validation-for="viplists" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["bankimgid"]</label>
+				<input asp-for="bankimgid" class="form-control" />
+				<span asp-validation-for="bankimgid" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+				<input type="button" value="@lang["public:save"]" class="btn btn-primary" onclick="edit();" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+<script>
+	function edit() {
+		var viplist = [];
+		$("input:checkbox[name=viplist]:checked").each(function () {
+			viplist.push($(this).val());
+		});
+		$("#viplists").val(viplist.join('|'));
+		$("#form1").submit();
+	}
+</script>

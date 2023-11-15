@@ -1,0 +1,117 @@
+@using NTKServer.ViewModels.MultiLang;
+@model Models.Dto.CmsBulletinDto
+@{
+    var lang = ViewBag.Lang;
+}
+
+<style>
+    .ck-editor {
+        min-width: 1000px;
+    }
+	.ck-editor__editable {
+        min-height: 300px;
+	}
+</style>
+
+<h4>@lang["public:title_create"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+			<div class="form-group">
+				<label class="control-label">@lang["pk"]</label>
+				<span asp-validation-for="pk" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["lang"]</label>
+
+				<select asp-for="lang" asp-items="@(new SelectList(ViewBag.langDropdown, nameof(SelectListItem.Value), nameof(SelectListItem.Text)))" class="form-select">
+				</select>
+				<span asp-validation-for="lang" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["title"]</label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["sort"]</label>
+				<input asp-for="sort" class="form-control" />
+				<span asp-validation-for="sort" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="on_active" /> @lang["on_active"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["view"]</label>
+				<input asp-for="view" class="form-control" />
+				<span asp-validation-for="view" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="trash" /> @lang["trash"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["starttime"]</label>
+				<input asp-for="starttime" class="form-control" />
+				<span asp-validation-for="starttime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["endtime"]</label>
+				<input asp-for="endtime" class="form-control" />
+				<span asp-validation-for="endtime" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["topic_content"]</label>
+				<textarea asp-for="topic_content" name="topic_content" id="topic_content" class="form-control" ></textarea>
+				<span asp-validation-for="topic_content" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["imgid"]</label>
+				<input asp-for="imgid" class="form-control" />
+				<span asp-validation-for="imgid" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["summary"]</label>
+				<input asp-for="summary" class="form-control" />
+				<span asp-validation-for="summary" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+			<label class="form-check-label">
+			<input class="form-check-input" asp-for="outsite" /> @lang["outsite"]
+			</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label">@lang["url"]</label>
+				<input asp-for="url" class="form-control" />
+				<span asp-validation-for="url" class="text-danger"></span>
+			</div>
+
+            <div class="form-group">
+                <input type="submit" value="@lang["public:save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@lang["public:back_list"]</a>
+</div>
+
+@section Scripts{
+    <script src="~/assets/ckeditor5/ckeditor.js" > </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#topic_content' ),
+			{
+				ckfinder: { uploadUrl: '/Bulletin/UploadImage' }
+			}
+			 )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+}
