@@ -41,7 +41,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-	app.Urls.Add("http://localhost:9014");
+	app.Urls.Add("http://localhost:5000");
 }
 
 app.UseStaticFiles();
