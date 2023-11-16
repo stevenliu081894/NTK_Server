@@ -26,7 +26,7 @@ namespace NTKServer.Internal
 
         public string GetMessage(string language)
         {
-            return LanguageLib.GetErrorTranslate(language, _messageKey);
+            return _messageKey;
         }
     }
 }

@@ -51,36 +51,6 @@ namespace NTKServer.Tool
                                 .ToArray());
         }
 
-        public static T convertUtcToLocalTime<T>(T obj)
-        {
-            var properties = obj.GetType().GetProperties();
-            int time_zone_difference = Convert.ToInt32(ConfigLib.Get("time_zone_difference"));
-            foreach (var property in properties)
-            {
-                if (property.PropertyType == typeof(DateTime))
-                {
-                    DateTime currentValue = (DateTime)property.GetValue(obj);
-                    property.SetValue(obj, currentValue.AddHours(time_zone_difference));
-                }
-            }
-            return obj;
-        }
-
-        public static T convertLocalToUtcTime<T>(T obj)
-        {
-            var properties = obj.GetType().GetProperties();
-            int time_zone_difference = Convert.ToInt32(ConfigLib.Get("time_zone_difference"));
-            foreach (var property in properties)
-            {
-                if (property.PropertyType == typeof(DateTime))
-                {
-                    DateTime currentValue = (DateTime)property.GetValue(obj);
-                    property.SetValue(obj, currentValue.AddHours(-time_zone_difference));
-                }
-            }
-            return obj;
-        }
-
 		private static List<string> excludeIp = new List<string>() { "127.0.0.1", "localhost", "::1" };
 
 		/// <summary>

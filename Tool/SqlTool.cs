@@ -49,10 +49,6 @@ namespace NTKServer.Tool
                             val_string = Convert.ToDateTime(value).ToString("yyyy-MM-dd HH:mm:ss");
                             DateTime localTime = Convert.ToDateTime(value);
                             DateTime utcTime = localTime;
-                            string time_zone_difference = ConfigLib.Get("time_zone_difference");
-                            if (time_zone_difference != null) {
-                                utcTime = localTime.AddHours(-Convert.ToInt32(time_zone_difference));
-                            }
                            
                             val_string = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
                         }

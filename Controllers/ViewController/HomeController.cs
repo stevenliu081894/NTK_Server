@@ -16,36 +16,36 @@ public class HomeController : BaseController
         _logger = logger;
     }
 
-    [MenuFilter(40, 1)]
     public IActionResult Index(bool hasPermission = true)
     {
         if (!hasPermission)
         {
             ShowWarning("You don't have permission");
         }
-        HomeVm model = HomeBiz.GetHomeVm();
+        HomeVm model = new HomeVm
+        {
+            RechargeApplyCount = 0,
+            WithdrawApplyCount = 0,
+            BorrowCount = 0,
+            BorrowAddMoneyCount = 0,
+            BorrowAddFinanceCount = 0,
+            BorrowStopCount = 0,
+            TradeBenefitWithdrawCount = 0,
+            TradeAccountCount = 0,
+            BorrowRenewCount = 0,
+            AlertTradeAccountCount = 0,
+            TradeAccountEndTodayCount = 0,
+            LiquidatedAccountTodayCount = 0,
+            BorrowDepositMoney = 0,
+            BorrowMoneyToday = 0,
+            RechargeToday = 0,
+            WithdrawToday = 0,
+            MemberRegisterToday = 0,
+            MemberVerifying = 0,
+            TotalMember = 0,
+            TradeAccountFreeFeeCount = 0
+        };
         return View(model);
     }
-
-    public IActionResult Verify(int id)
-    {
-        var user = GetUser();
-        List<MainMenuVm> mainMenu = AdminMenuBiz.GetMenuByRole(user.role);
-        foreach(MainMenuVm item in mainMenu)
-        {
-            if (item.Child != null)
-            {
-                foreach (MainMenuVm child in item.Child)
-                {
-                    if (child.Id == id)
-                    {
-                        return Json(new { url = child.Url, hasPermission = true });
-                    }
-                }
-            }
-        }
-        return Json(new { url = "/Home/Index", hasPermission = false });
-    }
-
 
 }

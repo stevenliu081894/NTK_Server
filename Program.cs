@@ -21,8 +21,6 @@ string? writeConnectionString = configuration.GetValue<string>("ConnectionString
 string? readConnectionString = configuration.GetValue<string>("ConnectionStrings:ReadConnectionString");
 DapperMysql.Init(writeConnectionString, readConnectionString);
 
-// session
-builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "Session";
@@ -68,6 +66,6 @@ Init.Run();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}");
+    pattern: "{controller=home}/{action=Index}");
 
 app.Run();

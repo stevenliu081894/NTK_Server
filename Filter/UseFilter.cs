@@ -49,13 +49,12 @@ namespace NTKServer.Filter
         /// </summary>
         public bool CheckRolePower(int role)
         {
-            return AdminRoleBiz.VerifyPower(id, mid, role);
+            return true;
         }
 
         public int GetParentId(int id)
         {
-            var data = AdminMenuBiz.GetMenuByPK(id);
-            return data.parent;
+            return 1;
         }
 
         protected RedirectToRouteResult RedirectToUnAuthorized()
@@ -70,31 +69,6 @@ namespace NTKServer.Filter
 
         public bool SetMenu(BaseController controller, int roleId, int id, int model)
         {
-            var mainMenu = AdminMenuBiz.GetMenuByRole(roleId);
-
-            foreach (var item in mainMenu)
-            {
-                if (item.Id == model)
-                {
-                    item.Active = "active";
-                    if (item.Child != null)
-                    {
-                        foreach (var child in item.Child)
-                        {
-                            if (child.Id == id)
-                            {
-                                child.Css += " active ";
-                                controller.ViewData["Menu"] = mainMenu;
-                                controller.ViewData["workCtrl"] = item.Title;
-                                controller.ViewData["workAction"] = child.Title;
-                                controller.ViewData["Title"] = child.Title;
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-
             return false;
         }
     }    

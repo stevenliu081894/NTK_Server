@@ -14,50 +14,6 @@ namespace NTKServer.Business
             return BCrypt.Net.BCrypt.Verify(password, dbpassword);
         }
 
-        public static void CheckWhiteList(string ip, string account)
-        {
-            var enable_white_list = Convert.ToInt32(ConfigLib.Get("enable_white_list"));
-            if (enable_white_list == 1)
-            {
-                var white_list = AdminIpwhitelistService.FindByIpAndAccount(ip, account);
-                if (white_list == null || white_list.status == 0)
-                {
-                    throw new AppException(300, "ip_reject");
-                };
-            }
-        }
-
-        public static AdminSession Authenticate(string account, string password)
-        {
-            AdminUserDto admin = AdminUserBiz.GetByAccount(account);
-            if(admin == null )
-            {
-                throw new AppException(1270, "none_account");
-            }
-
-            if(admin.status == 0)
-            {
-                throw new AppException(1230, "account_expired");
-            }
-
-            //if (VerifyPassword(password, admin.password) == false)
-            //{
-            //    throw new AppException(1209, "incorrect_password");
-            //}
-
-            AdminSession session = new AdminSession
-            {
-                pk = admin.pk,
-                role = admin.role,
-                account = admin.account,
-                nickName = admin.nickname,
-                avatar = admin.avatar,
-                lang = admin.lang,
-                change_password = admin.change_password
-            };
-
-            return session;            
-    }
 
         /// <summary>
         /// 驗證圖形驗證碼
@@ -106,9 +62,7 @@ namespace NTKServer.Business
             {
 				throw new AppException(1208, "password_length_6_96_error");				    
 			}
-
-            // 验证原始密码
-            Authenticate(loginProvider, providerKey);
+            
             string newpasswd = BCrypt.Net.BCrypt.HashPassword(newPassword);
             AdminUserService.UpdatePassword(loginProvider, newpasswd, false);
 		}

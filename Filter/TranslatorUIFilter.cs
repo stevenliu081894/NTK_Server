@@ -42,12 +42,8 @@ namespace NTKServer.Filter
 			};
 
             var ctrl = context.Controller as BaseController;
-            string lang = ctrl.GetLanguage();
-            string json = MutilangCacheService.FindJson(_key, lang) ?? MutilangService.FindJson(_key);
-            Dictionary<string, string> mainDic = PublicTool.FromJson<Dictionary<string, string>>(json);
-
-            mainDic = mainDic.Concat(dict).ToDictionary(k => k.Key, v => v.Value);
-            ctrl.ViewData["Lang"] = mainDic;
+            
+            ctrl.ViewData["Lang"] = dict;
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using FluentValidation;
 using NTKServer.Models.MemberOp;
-using NTKServer.Models.Dto;
-using NTKServer.Services;
+
 using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
 using DB.Services;
 using NTKServer.Models;
 using Models.Dto;
 using NTKServer.Internal;
-using NTKServer.Services;
 
 namespace NTKServer.Validates
 {

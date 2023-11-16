@@ -7,9 +7,6 @@ namespace NTKServer
     {
         public static void Run()
         {
-            AdminMenuBiz.BuildMenu();
-            LanguageLib.InitErrorMsgCache();
-            ConfigLib.Reset();
         }
     }
 }

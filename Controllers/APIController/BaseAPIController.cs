@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using NTKServer.Models;
-using NTKServer.Cache;
 
 namespace NTKServer.Controllers
 {
